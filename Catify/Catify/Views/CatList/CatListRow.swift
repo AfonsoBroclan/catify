@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatListRow: View {
-    @Binding var cat: Cat
+    var cat: Cat
 
     var body: some View {
         HStack {
@@ -30,7 +30,7 @@ struct CatListRow: View {
 }
 
 #Preview {
-    CatListRow(cat: .constant(Cat(id: "0XYvRd7oD",
-                                  url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
-                                  breeds: [Breed(name: "Abyssinian")])))
+    CatListRow(cat: Cat(id: "0XYvRd7oD",
+                        url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
+                        breeds: [Breed(name: "Abyssinian")]))
 }

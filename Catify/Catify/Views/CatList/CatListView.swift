@@ -12,17 +12,20 @@ struct CatListView: View {
 
     var body: some View {
 
-        ScrollView {
-            if self.$viewModel.cats.isEmpty {
-                ProgressView()
-                    .onAppear {
-                        self.viewModel.viewDidLoad()
-                    }
-            } else {
-                ForEach(self.$viewModel.cats, id: \.id) { cat in
-
-                    CatListRow(cat: cat)
+        if self.$viewModel.cats.isEmpty {
+            ProgressView()
+                .onAppear {
+                    self.viewModel.viewDidLoad()
                 }
+        } else {
+            NavigationStack {
+                List {
+                    ForEach(self.viewModel.searchResults, id: \.id) { cat in
+
+                        CatListRow(cat: cat)
+                    }
+                }
+                .searchable(text: self.$viewModel.breedSearch)
             }
         }
     }

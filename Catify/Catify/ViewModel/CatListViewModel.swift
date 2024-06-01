@@ -14,6 +14,18 @@ class CatListViewModel: ObservableObject {
     private var canFetchMore = true
 
     @Published var cats = [Cat]()
+    @Published var breedSearch = ""
+    var searchResults: [Cat] {
+
+        if self.breedSearch.isEmpty {
+
+            return self.cats
+
+        } else {
+
+            return self.cats.filter { $0.breedName.lowercased().contains(self.breedSearch.lowercased()) }
+        }
+    }
 
     init(api: CatAPI = CatServices()) {
         self.api = api
