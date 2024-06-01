@@ -13,17 +13,24 @@ class CatListViewModel: ObservableObject {
     private var currentPage = 0
     private var canFetchMore = true
 
+    private var fetchedCats = [Cat]() {
+
+        didSet {
+            self.cats = self.fetchedCats
+        }
+    }
     @Published var cats = [Cat]()
-    @Published var breedSearch = ""
-    var searchResults: [Cat] {
+    @Published var breedSearch = "" {
 
-        if self.breedSearch.isEmpty {
+        didSet {
+            if self.breedSearch.isEmpty {
 
-            return self.cats
+                self.cats = self.fetchedCats
 
-        } else {
+            } else {
 
-            return self.cats.filter { $0.breedName.lowercased().contains(self.breedSearch.lowercased()) }
+                self.cats = self.cats.filter { $0.breedName.lowercased().contains(self.breedSearch.lowercased()) }
+            }
         }
     }
 
@@ -54,18 +61,20 @@ private extension CatListViewModel {
 
         Task {
 
-            let (cats, error) = await self.api.fetchCats(page: self.currentPage, number: Constants.numberOfCatsPerPage)
+            let (catModels, error) = await self.api.fetchCats(page: self.currentPage, number: Constants.numberOfCatsPerPage)
 
-            if let cats {
+            if let catModels {
 
                 if cats.isEmpty {
 
                     self.canFetchMore = false
                 }
 
+                let cats = catModels.map { Cat($0) }
+
                 await MainActor.run {
 
-                    self.cats.append(contentsOf: cats)
+                    self.fetchedCats.append(contentsOf: cats)
                 }
 
                 self.currentPage += 1

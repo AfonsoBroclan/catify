@@ -13,7 +13,7 @@ enum CustomErrors: Error {
     case invalidJSON
 }
 
-typealias CatListResult = ([Cat]?, CustomErrors?)
+typealias CatListResult = ([CatModel]?, CustomErrors?)
 
 protocol CatAPI {
     

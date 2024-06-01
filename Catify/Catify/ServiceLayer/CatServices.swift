@@ -19,7 +19,7 @@ final class CatServices: CatAPI {
 
             let (data, _) = try await URLSession.shared.data(from: url)
 
-            if let catResults = try? JSONDecoder().decode([Cat].self, from: data) {
+            if let catResults = try? JSONDecoder().decode([CatModel].self, from: data) {
 
                 return (catResults, nil)
 

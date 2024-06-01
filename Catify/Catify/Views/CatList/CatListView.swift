@@ -20,7 +20,7 @@ struct CatListView: View {
         } else {
             NavigationStack {
                 List {
-                    ForEach(self.viewModel.searchResults, id: \.id) { cat in
+                    ForEach(self.$viewModel.cats, id: \.id) { cat in
 
                         CatListRow(cat: cat)
                     }

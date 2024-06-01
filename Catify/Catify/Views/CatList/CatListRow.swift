@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct CatListRow: View {
-    var cat: Cat
+    @Binding var cat: Cat
+
+    private var favouriteIcon: String {
+        self.$cat.wrappedValue.isFavourite ? "star.fill" : "star"
+    }
 
     var body: some View {
         HStack {
@@ -24,13 +28,24 @@ struct CatListRow: View {
             Text(self.cat.breedName)
 
             Spacer()
+
+            Image(systemName: self.favouriteIcon)
+                .onTapGesture {
+
+                    if self.cat.isFavourite {
+                        self.cat.removeAsFavourite()
+                    } else {
+                        self.cat.addAsFavourite()
+                    }
+                }
         }
         .padding()
     }
 }
 
 #Preview {
-    CatListRow(cat: Cat(id: "0XYvRd7oD",
-                        url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
-                        breeds: [Breed(name: "Abyssinian")]))
+    CatListRow(cat: .constant(Cat(id: "0XYvRd7oD",
+                                  url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
+                                  breeds: [Breed(name: "Abyssinian")], 
+                                  isFavourite: true)))
 }
