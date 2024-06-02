@@ -14,14 +14,6 @@ struct Cat {
     let breeds: [Breed]
     var isFavourite: Bool
 
-    init(id: String, url: URL?, breeds: [Breed], isFavourite: Bool) {
-
-        self.id = id
-        self.url = url
-        self.breeds = breeds
-        self.isFavourite = isFavourite
-    }
-
     init(_ cat: CatModel) {
 
         self = Cat(id: cat.id, url: cat.url, breeds: cat.breeds, isFavourite: false)
@@ -50,5 +42,24 @@ extension Cat {
         let breedsArticle = self.breeds.count > 1 ? "a mix of the breeds" : "of breed"
 
         return "This cat is \(breedsArticle): \(breedNames)"
+    }
+}
+
+// MARK: Mock purposes
+extension Cat {
+
+    init(id: String = "", url: URL? = nil, breeds: [Breed] = [], isFavourite: Bool = false) {
+
+        self.id = id
+        self.url = url
+        self.breeds = breeds
+        self.isFavourite = isFavourite
+    }
+
+    static var mockedCat: Cat {
+        Cat(id: "0XYvRd7oD",
+            url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
+            breeds: [Breed.mockedBreed],
+            isFavourite: true)
     }
 }

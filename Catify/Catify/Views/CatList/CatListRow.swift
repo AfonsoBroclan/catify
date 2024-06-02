@@ -33,10 +33,5 @@ struct CatListRow: View {
 }
 
 #Preview {
-    CatListRow(cat: .constant(Cat(id: "0XYvRd7oD",
-                                  url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
-                                  breeds: [Breed(name: "Abyssinian",
-                                                 lifeSpan: "14 - 15")], 
-                                  isFavourite: true)),
-               viewModel: CatListViewModel(appViewModel: AppViewModel(), type: .all))
+    CatListRow(cat: .constant(Cat.mockedCat), favouriteProtocol: AppViewModel())
 }

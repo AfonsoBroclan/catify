@@ -27,6 +27,7 @@
 		20E164C52C0B948B001C54EC /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164C42C0B948B001C54EC /* Cat.swift */; };
 		20E164CB2C0CC171001C54EC /* Breed+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164CA2C0CC171001C54EC /* Breed+Extensions.swift */; };
 		20E164CF2C0CF1D8001C54EC /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164CE2C0CF1D8001C54EC /* AppViewModel.swift */; };
+		20E164D32C0D18B1001C54EC /* CatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164D22C0D18B1001C54EC /* CatDetailView.swift */; };
 		20E164D82C0D1C30001C54EC /* FavouriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164D72C0D1C30001C54EC /* FavouriteProtocol.swift */; };
 		20E164DB2C0D22CA001C54EC /* FavouriteIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164DA2C0D22CA001C54EC /* FavouriteIcon.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		20E164C42C0B948B001C54EC /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		20E164CA2C0CC171001C54EC /* Breed+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Breed+Extensions.swift"; sourceTree = "<group>"; };
 		20E164CE2C0CF1D8001C54EC /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		20E164D22C0D18B1001C54EC /* CatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailView.swift; sourceTree = "<group>"; };
 		20E164D72C0D1C30001C54EC /* FavouriteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProtocol.swift; sourceTree = "<group>"; };
 		20E164DA2C0D22CA001C54EC /* FavouriteIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +191,7 @@
 				20E164D92C0D22B6001C54EC /* Common */,
 				20E164C02C0B845F001C54EC /* CatList */,
 				20E164B22C0B7E63001C54EC /* HomeView.swift */,
+				20E164D22C0D18B1001C54EC /* CatDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				20E1647D2C0B780B001C54EC /* ContentView.swift in Sources */,
 				20E164C22C0B8471001C54EC /* CatListRow.swift in Sources */,
 				20E164DB2C0D22CA001C54EC /* FavouriteIcon.swift in Sources */,
+				20E164D32C0D18B1001C54EC /* CatDetailView.swift in Sources */,
 				20E164AD2C0B7AE2001C54EC /* CatServices.swift in Sources */,
 				20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */,
 				20E164B02C0B7D69001C54EC /* CatModel.swift in Sources */,
