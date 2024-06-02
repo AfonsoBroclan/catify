@@ -9,10 +9,7 @@ import SwiftUI
 
 struct CatListRow: View {
     @Binding var cat: Cat
-
-    private var favouriteIcon: String {
-        self.$cat.wrappedValue.isFavourite ? "star.fill" : "star"
-    }
+    @ObservedObject var viewModel: CatListViewModel
 
     var body: some View {
         HStack {
@@ -29,14 +26,10 @@ struct CatListRow: View {
 
             Spacer()
 
-            Image(systemName: self.favouriteIcon)
+            Image(systemName: self.cat.isFavourite ? "star.fill" : "star")
                 .onTapGesture {
 
-                    if self.cat.isFavourite {
-                        self.cat.removeAsFavourite()
-                    } else {
-                        self.cat.addAsFavourite()
-                    }
+                    self.viewModel.toggleFavourite(for: self.cat)
                 }
         }
         .padding()
@@ -46,6 +39,8 @@ struct CatListRow: View {
 #Preview {
     CatListRow(cat: .constant(Cat(id: "0XYvRd7oD",
                                   url: URL(string: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"),
-                                  breeds: [Breed(name: "Abyssinian")], 
-                                  isFavourite: true)))
+                                  breeds: [Breed(name: "Abyssinian",
+                                                 lifeSpan: "14 - 15")], 
+                                  isFavourite: true)),
+               viewModel: CatListViewModel(appViewModel: AppViewModel(), type: .all))
 }

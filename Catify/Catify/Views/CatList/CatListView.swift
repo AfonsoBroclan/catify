@@ -13,16 +13,18 @@ struct CatListView: View {
     var body: some View {
 
         if self.$viewModel.cats.isEmpty {
-            ProgressView()
-                .onAppear {
-                    self.viewModel.viewDidLoad()
-                }
+            self.emptyView
         } else {
             NavigationStack {
                 List {
+
+                    Section {
+                        self.favouriteAverageLifeSpan
+                    }
+
                     ForEach(self.$viewModel.cats, id: \.id) { cat in
 
-                        CatListRow(cat: cat)
+                        CatListRow(cat: cat, viewModel: self.viewModel)
                     }
                 }
                 .searchable(text: self.$viewModel.breedSearch)
@@ -31,6 +33,32 @@ struct CatListView: View {
     }
 }
 
+// MARK: Subviews
+extension CatListView {
+
+    @ViewBuilder var emptyView: some View {
+        switch self.viewModel.type {
+        case .all:
+            ProgressView()
+        case .favourite:
+            Text("Go add some favourite cats!")
+        }
+    }
+
+    @ViewBuilder var favouriteAverageLifeSpan: some View {
+
+        if self.viewModel.type == .favourite,
+           let average = self.viewModel.averageMinimumLifeSpan {
+
+            Text("The average lifespan of your favourite breeds is \(average)")
+
+        } else {
+
+            EmptyView()
+        }
+    }
+}
+
 #Preview {
-    CatListView(viewModel: CatListViewModel())
+    CatListView(viewModel: CatListViewModel(appViewModel: AppViewModel(), type: .all))
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var viewModel = AppViewModel()
     @State private var selection: Tab = .list
 
     enum Tab {
@@ -17,17 +18,20 @@ struct HomeView: View {
 
     var body: some View {
         TabView(selection: $selection) {
-            CatListView(viewModel: CatListViewModel())
+            CatListView(viewModel: CatListViewModel(appViewModel: self.viewModel, type: .all))
                 .tabItem {
                     Label("Cat List", systemImage: "list.bullet")
                 }
                 .tag(Tab.list)
 
-            FavouriteCatsView()
+            CatListView(viewModel: CatListViewModel(appViewModel: self.viewModel, type: .favourite))
                 .tabItem {
                     Label("Favourite Cats", systemImage: "star")
                 }
                 .tag(Tab.favourite)
+        }
+        .onAppear {
+            self.viewModel.viewDidLoad()
         }
     }
 }

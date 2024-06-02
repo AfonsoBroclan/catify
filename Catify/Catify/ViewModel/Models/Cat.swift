@@ -8,11 +8,11 @@
 import Foundation
 
 struct Cat {
-    
+
     let id: String
     let url: URL?
     let breeds: [Breed]
-    private(set) var isFavourite: Bool
+    var isFavourite: Bool
 
     init(id: String, url: URL?, breeds: [Breed], isFavourite: Bool) {
 
@@ -25,16 +25,6 @@ struct Cat {
     init(_ cat: CatModel) {
 
         self = Cat(id: cat.id, url: cat.url, breeds: cat.breeds, isFavourite: false)
-    }
-
-    mutating func addAsFavourite() {
-
-        self.isFavourite = true
-    }
-
-    mutating func removeAsFavourite() {
-
-        self.isFavourite = false
     }
 }
 

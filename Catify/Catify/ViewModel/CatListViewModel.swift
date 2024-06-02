@@ -6,26 +6,27 @@
 //
 
 import Foundation
+import SwiftUI
+
+enum ListType {
+
+    case all
+    case favourite
+}
 
 class CatListViewModel: ObservableObject {
 
-    private let api: CatAPI
-    private var currentPage = 0
-    private var canFetchMore = true
+    private var appViewModel: AppViewModel
 
-    private var fetchedCats = [Cat]() {
+    let type: ListType
 
-        didSet {
-            self.cats = self.fetchedCats
-        }
-    }
     @Published var cats = [Cat]()
     @Published var breedSearch = "" {
 
         didSet {
             if self.breedSearch.isEmpty {
 
-                self.cats = self.fetchedCats
+                self.cats = self.appViewModel.cats
 
             } else {
 
@@ -34,55 +35,30 @@ class CatListViewModel: ObservableObject {
         }
     }
 
-    init(api: CatAPI = CatServices()) {
-        self.api = api
+    init(appViewModel: AppViewModel, type: ListType) {
+        self.appViewModel = appViewModel
+        self.type = type
+        self.cats = type == .all ? appViewModel.cats : appViewModel.favouriteCats
     }
 
-    func viewDidLoad() {
+    func toggleFavourite(for cat: Cat) {
 
-        self.fetchCats()
-    }
-
-    private enum Constants {
-
-        static let numberOfCatsPerPage = 20
+        self.appViewModel.toggleFavourite(for: cat)
     }
 }
 
-// Mark: Fetch
-private extension CatListViewModel {
+// MARK: LifeSpan
+extension CatListViewModel {
 
-    func fetchCats() {
+    var averageMinimumLifeSpan: String? {
 
-        if self.canFetchMore == false {
+        let breeds = self.cats.compactMap { $0.breeds }.flatMap { $0 }
 
-            return
-        }
+        guard let average = breeds.averageMinimumLifeSpan else { return nil }
 
-        Task {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
 
-            let (catModels, error) = await self.api.fetchCats(page: self.currentPage, number: Constants.numberOfCatsPerPage)
-
-            if let catModels {
-
-                if cats.isEmpty {
-
-                    self.canFetchMore = false
-                }
-
-                let cats = catModels.map { Cat($0) }
-
-                await MainActor.run {
-
-                    self.fetchedCats.append(contentsOf: cats)
-                }
-
-                self.currentPage += 1
-
-            } else {
-
-                print("Something went wrong: \(error.debugDescription)")
-            }
-        }
+        return numberFormatter.string(from: NSNumber(floatLiteral: average))
     }
 }
