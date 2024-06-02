@@ -16,7 +16,7 @@ enum ListType {
 
 class CatListViewModel: ObservableObject {
 
-    private var appViewModel: AppViewModel
+    private(set) var appViewModel: AppViewModel
 
     let type: ListType
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CatListRow: View {
     @Binding var cat: Cat
-    @ObservedObject var viewModel: CatListViewModel
+    var favouriteProtocol: FavouriteProtocol
 
     var body: some View {
         HStack {
@@ -26,11 +26,7 @@ struct CatListRow: View {
 
             Spacer()
 
-            Image(systemName: self.cat.isFavourite ? "star.fill" : "star")
-                .onTapGesture {
-
-                    self.viewModel.toggleFavourite(for: self.cat)
-                }
+            FavouriteIcon(cat: self.$cat, favouriteProtocol: self.favouriteProtocol)
         }
         .padding()
     }

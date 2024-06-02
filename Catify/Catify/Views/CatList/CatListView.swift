@@ -24,7 +24,7 @@ struct CatListView: View {
 
                     ForEach(self.$viewModel.cats, id: \.id) { cat in
 
-                        CatListRow(cat: cat, viewModel: self.viewModel)
+                        CatListRow(cat: cat, favouriteProtocol: self.viewModel.appViewModel)
                     }
                 }
                 .searchable(text: self.$viewModel.breedSearch)

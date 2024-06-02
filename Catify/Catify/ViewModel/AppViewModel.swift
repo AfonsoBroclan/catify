@@ -32,6 +32,15 @@ import SwiftUI
         self.fetchCats()
     }
 
+    private enum Constants {
+
+        static let numberOfCatsPerPage = 20
+    }
+}
+
+// MARK: FavouriteProtocol
+extension AppViewModel: FavouriteProtocol {
+
     func toggleFavourite(for cat: Cat) {
 
         if let index = self.cats.firstIndex(where: { $0.id == cat.id }) {
@@ -39,14 +48,9 @@ import SwiftUI
             self.cats[index].isFavourite.toggle()
         }
     }
-
-    private enum Constants {
-
-        static let numberOfCatsPerPage = 20
-    }
 }
 
-// Mark: Fetch
+// MARK: Fetch
 private extension AppViewModel {
 
     func fetchCats() {
