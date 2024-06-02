@@ -13,30 +13,37 @@ struct CatDetailView: View {
 
     var body: some View {
 
-        ForEach(cat.breeds, id: \.id) { breed in
+        if self.cat.breeds.isEmpty {
 
-            VStack {
+            Text("This cat has no breeds!")
 
-                FavouriteIcon(cat: self.$cat, favouriteProtocol: self.favouriteProtocol)
+        } else {
 
-                VStack(alignment: .leading) {
-                    HStack {
+            ForEach(self.cat.breeds, id: \.id) { breed in
 
-                        Text(breed.name)
-                        Spacer()
-                        Text(breed.origin)
+                VStack {
+
+                    FavouriteIcon(cat: self.$cat, favouriteProtocol: self.favouriteProtocol)
+
+                    VStack(alignment: .leading) {
+                        HStack {
+
+                            Text(breed.name)
+                            Spacer()
+                            Text(breed.origin)
+                        }
+
+                        Divider()
+                        Text(breed.temperament)
+
+                        Divider()
+                        Text(breed.breedDescription)
                     }
-
-                    Divider()
-                    Text(breed.temperament)
-
-                    Divider()
-                    Text(breed.breedDescription)
                 }
-            }
-            .padding()
+                .padding()
 
-            Spacer()
+                Spacer()
+            }
         }
     }
 }

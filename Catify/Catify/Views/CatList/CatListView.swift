@@ -24,7 +24,13 @@ struct CatListView: View {
 
                     ForEach(self.$viewModel.cats, id: \.id) { cat in
 
-                        CatListRow(cat: cat, favouriteProtocol: self.viewModel.appViewModel)
+                        NavigationLink {
+                            CatDetailView(cat: cat,
+                                          favouriteProtocol: self.viewModel.appViewModel)
+                        } label: {
+                            CatListRow(cat: cat,
+                                       favouriteProtocol: self.viewModel.appViewModel)
+                        }
                     }
                 }
                 .searchable(text: self.$viewModel.breedSearch)
