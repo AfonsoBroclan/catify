@@ -13,7 +13,7 @@ final class APIMock: CatAPI {
     
     let withSuccess: Bool
 
-    init(withSuccess: Bool) {
+    init(withSuccess: Bool = true) {
         self.withSuccess = withSuccess
     }
 
@@ -21,7 +21,7 @@ final class APIMock: CatAPI {
 
         if self.withSuccess {
 
-            let cats = [CatModel.mockedCat, CatModel.mockedCat, CatModel.mockedCat]
+            let cats = [CatModel.mockedCat, CatModel.mockedCat2, CatModel.mockedCat]
 
             return (cats, nil)
 
