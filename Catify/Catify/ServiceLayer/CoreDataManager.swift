@@ -52,4 +52,19 @@ class CoreDataManager {
             return []
         }
     }
+    
+    func toggleFavourite(cat: Cat) {
+        
+        let fetchRequest: NSFetchRequest<CatEntity> = CatEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", cat.id)
+
+        do {
+            if let entity = try self.context.fetch(fetchRequest).first {
+                entity.isFavourite = cat.isFavourite
+                try self.context.save()
+            }
+        } catch {
+            assertionFailure("Failed to favourite cat: \(error)")
+        }
+    }
 }

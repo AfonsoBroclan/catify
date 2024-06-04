@@ -20,6 +20,15 @@ struct Cat {
     }
 }
 
+// MARK: Protocol conformances
+extension Cat: Equatable {
+
+    static func == (lhs: Cat, rhs: Cat) -> Bool {
+
+        return lhs.id == rhs.id
+    }
+}
+
 // MARK: - Helper methods
 extension Cat {
 

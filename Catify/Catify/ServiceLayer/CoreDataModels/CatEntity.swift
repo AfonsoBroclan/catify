@@ -29,6 +29,11 @@ extension CatEntity {
 
         return NSFetchRequest<CatEntity>(entityName: "CatEntity")
     }
+
+    static func == (lhs: CatEntity, rhs: CatEntity) -> Bool {
+
+        return lhs.id == rhs.id
+    }
 }
 
 extension Cat {

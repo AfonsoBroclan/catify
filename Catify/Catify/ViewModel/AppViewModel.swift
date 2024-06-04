@@ -48,7 +48,11 @@ extension AppViewModel: FavouriteProtocol {
 
         if let index = self.cats.firstIndex(where: { $0.id == cat.id }) {
 
-            self.cats[index].isFavourite.toggle()
+            var newCat = cat
+            newCat.isFavourite.toggle()
+
+            self.cats[index] = newCat
+            self.coreDataManager.toggleFavourite(cat: newCat)
         }
     }
 }
