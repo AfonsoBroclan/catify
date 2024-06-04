@@ -5,12 +5,14 @@
 //  Created by Afonso Rosa on 02/06/2024.
 //
 
+import CoreData
 import Foundation
 import SwiftUI
 
 @Observable final class AppViewModel {
 
     private let api: CatAPI
+    private let coreDataManager: CoreDataManager
     private var currentPage = 0
     private var canFetchMore = true
 
@@ -23,8 +25,9 @@ import SwiftUI
     }
     var favouriteCats = [Cat]()
 
-    init(api: CatAPI = CatServices()) {
+    init(api: CatAPI = CatServices(), coreDataManager: CoreDataManager = CoreDataManager()) {
         self.api = api
+        self.coreDataManager = coreDataManager
     }
 
     func viewDidLoad() {
@@ -60,7 +63,17 @@ private extension AppViewModel {
             return
         }
 
-        Task {
+        let savedCats = self.coreDataManager.savedCats
+
+        if savedCats.isEmpty == false {
+
+            self.cats = savedCats
+            return
+        }
+
+        Task { [weak self] in
+
+            guard let self else { return }
 
             let (catModels, error) = await self.api.fetchCats(page: self.currentPage, number: Constants.numberOfCatsPerPage)
 
@@ -76,6 +89,11 @@ private extension AppViewModel {
                 await MainActor.run {
 
                     self.cats.append(contentsOf: cats)
+
+                    for cat in self.cats {
+
+                        self.coreDataManager.saveCat(cat: cat)
+                    }
                 }
 
                 self.currentPage += 1

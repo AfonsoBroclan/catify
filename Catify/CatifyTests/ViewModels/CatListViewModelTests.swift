@@ -76,15 +76,8 @@ final class CatListViewModelTests: XCTestCase {
 
     func testAverageMinimumSpan() throws {
 
-        let appViewModel = try XCTUnwrap(self.appViewModel)
-
         let catListViewModel = try XCTUnwrap(self.catListViewModel)
 
         XCTAssertEqual(catListViewModel.averageMinimumLifeSpan, "11")
     }
-}
-
-// MARK: Helpers
-private extension CatListViewModelTests {
-
 }

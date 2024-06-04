@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		2080B0912C0E818C002CCEF9 /* BreedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0902C0E818C002CCEF9 /* BreedTests.swift */; };
 		2080B0942C0E83FB002CCEF9 /* CatListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0932C0E83FB002CCEF9 /* CatListViewModelTests.swift */; };
+		2080B0B82C0F9FDB002CCEF9 /* CatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */; };
+		2080B0BA2C0F9FF9002CCEF9 /* BreedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */; };
 		20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1647A2C0B780B001C54EC /* CatifyApp.swift */; };
-		20E1647D2C0B780B001C54EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1647C2C0B780B001C54EC /* ContentView.swift */; };
 		20E1647F2C0B780C001C54EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E1647E2C0B780C001C54EC /* Assets.xcassets */; };
 		20E164822C0B780C001C54EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E164812C0B780C001C54EC /* Preview Assets.xcassets */; };
-		20E164842C0B780C001C54EC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164832C0B780C001C54EC /* Persistence.swift */; };
+		20E164842C0B780C001C54EC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164832C0B780C001C54EC /* CoreDataManager.swift */; };
 		20E164872C0B780C001C54EC /* Catify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20E164852C0B780C001C54EC /* Catify.xcdatamodeld */; };
 		20E164912C0B780D001C54EC /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E164902C0B780D001C54EC /* AppViewModelTests.swift */; };
 		20E1649B2C0B780D001C54EC /* CatifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1649A2C0B780D001C54EC /* CatifyUITests.swift */; };
@@ -56,12 +57,13 @@
 /* Begin PBXFileReference section */
 		2080B0902C0E818C002CCEF9 /* BreedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTests.swift; sourceTree = "<group>"; };
 		2080B0932C0E83FB002CCEF9 /* CatListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListViewModelTests.swift; sourceTree = "<group>"; };
+		2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatEntity.swift; sourceTree = "<group>"; };
+		2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedEntity.swift; sourceTree = "<group>"; };
 		20E164772C0B780B001C54EC /* Catify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E1647A2C0B780B001C54EC /* CatifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatifyApp.swift; sourceTree = "<group>"; };
-		20E1647C2C0B780B001C54EC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20E1647E2C0B780C001C54EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20E164812C0B780C001C54EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		20E164832C0B780C001C54EC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		20E164832C0B780C001C54EC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		20E164862C0B780C001C54EC /* Catify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Catify.xcdatamodel; sourceTree = "<group>"; };
 		20E1648C2C0B780D001C54EC /* CatifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E164902C0B780D001C54EC /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
@@ -120,6 +122,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		2080B0B22C0F9705002CCEF9 /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */,
+				2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
 		20E1646E2C0B780B001C54EC = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +160,7 @@
 				20E164B82C0B8036001C54EC /* ViewModel */,
 				20E164B12C0B7DCC001C54EC /* Views */,
 				20E1647A2C0B780B001C54EC /* CatifyApp.swift */,
-				20E1647C2C0B780B001C54EC /* ContentView.swift */,
 				20E1647E2C0B780C001C54EC /* Assets.xcassets */,
-				20E164832C0B780C001C54EC /* Persistence.swift */,
 				20E164852C0B780C001C54EC /* Catify.xcdatamodeld */,
 				20E164802C0B780C001C54EC /* Preview Content */,
 			);
@@ -188,9 +197,11 @@
 		20E164A92C0B7A9D001C54EC /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2080B0B22C0F9705002CCEF9 /* CoreDataModels */,
 				20E164AE2C0B7D3E001C54EC /* Models */,
 				20E164AA2C0B7AAF001C54EC /* CatAPI.swift */,
 				20E164AC2C0B7AE2001C54EC /* CatServices.swift */,
+				20E164832C0B780C001C54EC /* CoreDataManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -406,13 +417,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				20E164BC2C0B81D1001C54EC /* Breed.swift in Sources */,
-				20E164842C0B780C001C54EC /* Persistence.swift in Sources */,
-				20E1647D2C0B780B001C54EC /* ContentView.swift in Sources */,
+				20E164842C0B780C001C54EC /* CoreDataManager.swift in Sources */,
 				20E164C22C0B8471001C54EC /* CatListRow.swift in Sources */,
 				20E164DB2C0D22CA001C54EC /* FavouriteIcon.swift in Sources */,
 				20E164D32C0D18B1001C54EC /* CatDetailView.swift in Sources */,
 				20E164AD2C0B7AE2001C54EC /* CatServices.swift in Sources */,
 				20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */,
+				2080B0B82C0F9FDB002CCEF9 /* CatEntity.swift in Sources */,
 				20E164B02C0B7D69001C54EC /* CatModel.swift in Sources */,
 				20E164D82C0D1C30001C54EC /* FavouriteProtocol.swift in Sources */,
 				20E164BA2C0B8049001C54EC /* CatListViewModel.swift in Sources */,
@@ -420,6 +431,7 @@
 				20E164CF2C0CF1D8001C54EC /* AppViewModel.swift in Sources */,
 				20E164B32C0B7E63001C54EC /* HomeView.swift in Sources */,
 				20E164872C0B780C001C54EC /* Catify.xcdatamodeld in Sources */,
+				2080B0BA2C0F9FF9002CCEF9 /* BreedEntity.swift in Sources */,
 				20E164CB2C0CC171001C54EC /* Breed+Extensions.swift in Sources */,
 				20E164B52C0B7EEB001C54EC /* CatListView.swift in Sources */,
 				20E164AB2C0B7AAF001C54EC /* CatAPI.swift in Sources */,
