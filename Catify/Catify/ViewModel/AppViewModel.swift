@@ -12,7 +12,7 @@ import SwiftUI
 @Observable final class AppViewModel {
 
     private let api: CatAPI
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataManager?
     private var currentPage = 0
     private var canFetchMore = true
 
@@ -25,7 +25,7 @@ import SwiftUI
     }
     var favouriteCats = [Cat]()
 
-    init(api: CatAPI = CatServices(), coreDataManager: CoreDataManager = CoreDataManager()) {
+    init(api: CatAPI = CatServices(), coreDataManager: CoreDataManager? = nil) {
         self.api = api
         self.coreDataManager = coreDataManager
     }
@@ -48,11 +48,11 @@ extension AppViewModel: FavouriteProtocol {
 
         if let index = self.cats.firstIndex(where: { $0.id == cat.id }) {
 
-            var newCat = cat
+            var newCat = self.cats[index]
             newCat.isFavourite.toggle()
 
             self.cats[index] = newCat
-            self.coreDataManager.toggleFavourite(cat: newCat)
+            self.coreDataManager?.toggleFavourite(cat: newCat)
         }
     }
 }
@@ -67,7 +67,7 @@ private extension AppViewModel {
             return
         }
 
-        let savedCats = self.coreDataManager.savedCats
+        let savedCats = self.coreDataManager?.savedCats ?? []
 
         if savedCats.isEmpty == false {
 
@@ -96,7 +96,7 @@ private extension AppViewModel {
 
                     for cat in self.cats {
 
-                        self.coreDataManager.saveCat(cat: cat)
+                        self.coreDataManager?.saveCat(cat: cat)
                     }
                 }
 

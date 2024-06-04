@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var viewModel = AppViewModel()
+    @State var viewModel = AppViewModel(coreDataManager: CoreDataManager())
     @State private var selection: Tab = .list
 
     enum Tab {
