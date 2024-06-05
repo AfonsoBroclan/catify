@@ -12,6 +12,7 @@
 		2080B0B82C0F9FDB002CCEF9 /* CatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */; };
 		2080B0BA2C0F9FF9002CCEF9 /* BreedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */; };
 		2080B0C22C1114A2002CCEF9 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */; };
+		2080B0C42C111AB3002CCEF9 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C32C111AB3002CCEF9 /* CoreDataManagerTests.swift */; };
 		20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1647A2C0B780B001C54EC /* CatifyApp.swift */; };
 		20E1647F2C0B780C001C54EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E1647E2C0B780C001C54EC /* Assets.xcassets */; };
 		20E164822C0B780C001C54EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E164812C0B780C001C54EC /* Preview Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatEntity.swift; sourceTree = "<group>"; };
 		2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedEntity.swift; sourceTree = "<group>"; };
 		2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		2080B0C32C111AB3002CCEF9 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		20E164772C0B780B001C54EC /* Catify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E1647A2C0B780B001C54EC /* CatifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatifyApp.swift; sourceTree = "<group>"; };
 		20E1647E2C0B780C001C54EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				20E164E02C0D2885001C54EC /* Mocks */,
 				2080B0922C0E83EA002CCEF9 /* ViewModels */,
 				2080B0902C0E818C002CCEF9 /* BreedTests.swift */,
+				2080B0C32C111AB3002CCEF9 /* CoreDataManagerTests.swift */,
 			);
 			path = CatifyTests;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				20E164DD2C0D274B001C54EC /* APIMock.swift in Sources */,
 				20E164912C0B780D001C54EC /* AppViewModelTests.swift in Sources */,
 				2080B0942C0E83FB002CCEF9 /* CatListViewModelTests.swift in Sources */,
+				2080B0C42C111AB3002CCEF9 /* CoreDataManagerTests.swift in Sources */,
 				20E164E22C0D2893001C54EC /* CatModel+MockExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
