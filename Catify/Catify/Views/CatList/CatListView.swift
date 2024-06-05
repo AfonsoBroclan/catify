@@ -12,28 +12,37 @@ struct CatListView: View {
 
     var body: some View {
 
-        if self.$viewModel.cats.isEmpty {
+        switch self.viewModel.state {
+
+        case .error:
+            self.errorView
+        case .loading:
             self.emptyView
-        } else {
-            NavigationStack {
-                List {
+        case .loaded:
+            if self.$viewModel.cats.count == 0 {
+                Text("Unfortunately there are no cats today! \nThey are currently getting a training in hell! 😈")
+                    .multilineTextAlignment(.center)
+            } else {
+                NavigationStack {
+                    List {
 
-                    Section {
-                        self.favouriteAverageLifeSpan
-                    }
+                        Section {
+                            self.favouriteAverageLifeSpan
+                        }
 
-                    ForEach(self.$viewModel.cats, id: \.id) { cat in
+                        ForEach(self.$viewModel.cats, id: \.id) { cat in
 
-                        NavigationLink {
-                            CatDetailView(cat: cat,
-                                          favouriteProtocol: self.viewModel.appViewModel)
-                        } label: {
-                            CatListRow(cat: cat,
-                                       favouriteProtocol: self.viewModel.appViewModel)
+                            NavigationLink {
+                                CatDetailView(cat: cat,
+                                              favouriteProtocol: self.viewModel.appViewModel)
+                            } label: {
+                                CatListRow(cat: cat,
+                                           favouriteProtocol: self.viewModel.appViewModel)
+                            }
                         }
                     }
+                    .searchable(text: self.$viewModel.breedSearch)
                 }
-                .searchable(text: self.$viewModel.breedSearch)
             }
         }
     }
@@ -48,6 +57,20 @@ extension CatListView {
             ProgressView()
         case .favourite:
             Text("Go add some favourite cats!")
+        }
+    }
+
+    @ViewBuilder var errorView: some View {
+        
+        VStack {
+
+            Text("Something went wront, please retry!")
+
+            Button {
+                self.viewModel.retry()
+            } label: {
+                Text("Retry")
+            }
         }
     }
 

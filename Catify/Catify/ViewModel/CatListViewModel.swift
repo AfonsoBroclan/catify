@@ -34,16 +34,23 @@ class CatListViewModel: ObservableObject {
             }
         }
     }
+    @Published var state: AppState
 
     init(appViewModel: AppViewModel, type: ListType) {
         self.appViewModel = appViewModel
         self.type = type
         self.cats = type == .all ? appViewModel.cats : appViewModel.favouriteCats
+        self.state = appViewModel.state
     }
 
     func toggleFavourite(for cat: Cat) {
 
         self.appViewModel.toggleFavourite(for: cat)
+    }
+
+    func retry() {
+
+        self.appViewModel.retry()
     }
 }
 

@@ -9,6 +9,13 @@ import CoreData
 import Foundation
 import SwiftUI
 
+enum AppState {
+
+    case loading
+    case loaded
+    case error
+}
+
 @Observable final class AppViewModel {
 
     private let api: CatAPI
@@ -24,6 +31,7 @@ import SwiftUI
         }
     }
     var favouriteCats = [Cat]()
+    var state: AppState  = .loading
 
     init(api: CatAPI = CatServices(), coreDataManager: CoreDataManager? = nil) {
         self.api = api
@@ -31,6 +39,13 @@ import SwiftUI
     }
 
     func viewDidLoad() {
+
+        self.fetchCats()
+    }
+
+    func retry() {
+
+        guard self.state == .error else { return }
 
         self.fetchCats()
     }
@@ -53,6 +68,10 @@ extension AppViewModel: FavouriteProtocol {
 
             self.cats[index] = newCat
             self.coreDataManager?.toggleFavourite(cat: newCat)
+
+        } else {
+            
+            assertionFailure("Cat with id \(cat.id) doesn't exist, this should not be possible.")
         }
     }
 }
@@ -67,11 +86,14 @@ private extension AppViewModel {
             return
         }
 
+        self.state = .loading
+
         let savedCats = self.coreDataManager?.savedCats ?? []
 
         if savedCats.isEmpty == false {
 
             self.cats = savedCats
+            self.state = .loaded
             return
         }
 
@@ -98,13 +120,29 @@ private extension AppViewModel {
 
                         self.coreDataManager?.saveCat(cat: cat)
                     }
+                    self.state = .loaded
                 }
 
                 self.currentPage += 1
 
             } else {
 
+                switch error {
+
+                case .invalidURL:
+                    assertionFailure("URL is wrong, this should not be possible!")
+
+                case .invalidJSON:
+                    assertionFailure("Something went wrong with the parser.")
+
+                case .none:
+                    break
+                }
+
                 print("Something went wrong: \(error.debugDescription)")
+                await MainActor.run {
+                    self.state = .error
+                }
             }
         }
     }

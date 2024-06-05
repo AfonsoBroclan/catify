@@ -11,6 +11,7 @@
 		2080B0942C0E83FB002CCEF9 /* CatListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0932C0E83FB002CCEF9 /* CatListViewModelTests.swift */; };
 		2080B0B82C0F9FDB002CCEF9 /* CatEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */; };
 		2080B0BA2C0F9FF9002CCEF9 /* BreedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */; };
+		2080B0C22C1114A2002CCEF9 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */; };
 		20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1647A2C0B780B001C54EC /* CatifyApp.swift */; };
 		20E1647F2C0B780C001C54EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E1647E2C0B780C001C54EC /* Assets.xcassets */; };
 		20E164822C0B780C001C54EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E164812C0B780C001C54EC /* Preview Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		2080B0932C0E83FB002CCEF9 /* CatListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListViewModelTests.swift; sourceTree = "<group>"; };
 		2080B0B72C0F9FDB002CCEF9 /* CatEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatEntity.swift; sourceTree = "<group>"; };
 		2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedEntity.swift; sourceTree = "<group>"; };
+		2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		20E164772C0B780B001C54EC /* Catify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E1647A2C0B780B001C54EC /* CatifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatifyApp.swift; sourceTree = "<group>"; };
 		20E1647E2C0B780C001C54EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,26 @@
 			path = CoreDataModels;
 			sourceTree = "<group>";
 		};
+		2080B0BF2C111483002CCEF9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2080B0B22C0F9705002CCEF9 /* CoreDataModels */,
+				20E164832C0B780C001C54EC /* CoreDataManager.swift */,
+				2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2080B0C02C11148D002CCEF9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				20E164AE2C0B7D3E001C54EC /* Models */,
+				20E164AA2C0B7AAF001C54EC /* CatAPI.swift */,
+				20E164AC2C0B7AE2001C54EC /* CatServices.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		20E1646E2C0B780B001C54EC = {
 			isa = PBXGroup;
 			children = (
@@ -197,11 +219,8 @@
 		20E164A92C0B7A9D001C54EC /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				2080B0B22C0F9705002CCEF9 /* CoreDataModels */,
-				20E164AE2C0B7D3E001C54EC /* Models */,
-				20E164AA2C0B7AAF001C54EC /* CatAPI.swift */,
-				20E164AC2C0B7AE2001C54EC /* CatServices.swift */,
-				20E164832C0B780C001C54EC /* CoreDataManager.swift */,
+				2080B0C02C11148D002CCEF9 /* API */,
+				2080B0BF2C111483002CCEF9 /* CoreData */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -428,6 +447,7 @@
 				20E164D82C0D1C30001C54EC /* FavouriteProtocol.swift in Sources */,
 				20E164BA2C0B8049001C54EC /* CatListViewModel.swift in Sources */,
 				20E164C52C0B948B001C54EC /* Cat.swift in Sources */,
+				2080B0C22C1114A2002CCEF9 /* PersistentContainer.swift in Sources */,
 				20E164CF2C0CF1D8001C54EC /* AppViewModel.swift in Sources */,
 				20E164B32C0B7E63001C54EC /* HomeView.swift in Sources */,
 				20E164872C0B780C001C54EC /* Catify.xcdatamodeld in Sources */,

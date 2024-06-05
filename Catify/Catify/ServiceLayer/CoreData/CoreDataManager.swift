@@ -9,19 +9,28 @@ import CoreData
 
 class CoreDataManager {
 
-    private lazy var container: NSPersistentContainer = {
+    var hasError = false
 
-        let container = NSPersistentContainer(name: "Catify")
-        container.loadPersistentStores { store, error in
+    private lazy var container: PersistentContainer = {
 
-            if let error = error {
-                assertionFailure("Unresolved error \(error)")
-            }
+        let container = PersistentContainer(name: "Catify")
+        container.loadPersistentStores { [weak self] _, error in
+
+            self?.hasError = error != nil
         }
         return container
     }()
 
     private var context: NSManagedObjectContext {
+
+        if self.hasError {
+
+            self.container.loadPersistentStores { [weak self] _, error in
+
+                self?.hasError = error != nil
+            }
+        }
+
         return self.container.viewContext
     }
 
