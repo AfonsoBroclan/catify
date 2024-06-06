@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cat {
+struct Cat: Identifiable {
 
     let id: String
     let url: URL?

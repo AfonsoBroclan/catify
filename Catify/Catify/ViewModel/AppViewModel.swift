@@ -72,7 +72,7 @@ extension AppViewModel: FavouriteProtocol {
             var newCat = self.cats[index]
             newCat.isFavourite.toggle()
 
-            self.cats[index] = newCat
+            self.cats[index].isFavourite = newCat.isFavourite
             self.coreDataManager?.toggleFavourite(cat: newCat)
 
         } else {

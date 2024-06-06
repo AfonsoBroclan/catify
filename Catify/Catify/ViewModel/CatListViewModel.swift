@@ -39,6 +39,7 @@ class CatListViewModel: ObservableObject {
 
     func fetchMoreCats() {
 
+        self.breedSearch = ""
         self.appViewModel.fetchMoreCats()
     }
 
