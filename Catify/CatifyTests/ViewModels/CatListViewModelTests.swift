@@ -51,7 +51,7 @@ final class CatListViewModelTests: XCTestCase {
 
         let catListViewModel = try XCTUnwrap(self.catListViewModel)
 
-        XCTAssertEqual(catListViewModel.cats.count, 3)
+        XCTAssertEqual(catListViewModel.cats.count, 2)
 
         catListViewModel.toggleFavourite(for: catListViewModel.cats[0])
 
@@ -70,8 +70,8 @@ final class CatListViewModelTests: XCTestCase {
 
         catListViewModel.breedSearch = "Aby"
 
-        XCTAssertEqual(catListViewModel.cats.count, 2)
-        XCTAssertEqual(appViewModel.cats.count, 3)
+        XCTAssertEqual(catListViewModel.cats.count, 1)
+        XCTAssertEqual(appViewModel.cats.count, 2)
     }
 
     func testAverageMinimumSpan() throws {

@@ -36,13 +36,21 @@ class CoreDataManager {
 
     func saveCat(cat: Cat) {
 
-        _ = cat.toCatEntity(context: self.context)
+        let fetchRequest: NSFetchRequest<CatEntity> = CatEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", cat.id)
 
         do {
+            if let entity = try self.context.fetch(fetchRequest).first {
+                // The only thing that can change is the favourite
+                entity.isFavourite = cat.isFavourite
 
+            } else {
+
+                _ = cat.toCatEntity(context: self.context)
+            }
             try self.context.save()
         } catch {
-            assertionFailure("Failed to save cat: \(error)")
+            assertionFailure("Failed to favourite cat: \(error)")
         }
     }
 

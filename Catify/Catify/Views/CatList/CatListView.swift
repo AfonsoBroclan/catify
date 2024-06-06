@@ -18,7 +18,8 @@ struct CatListView: View {
             self.errorView
         case .loading:
             self.emptyView
-        case .loaded:
+        case .loaded,
+                .loadingMore:
             if self.$viewModel.cats.count == 0 {
                 Text("Unfortunately there are no cats today! \nThey are currently getting a training in hell! 😈")
                     .multilineTextAlignment(.center)
@@ -38,10 +39,27 @@ struct CatListView: View {
                             } label: {
                                 CatListRow(cat: cat,
                                            favouriteProtocol: self.viewModel.appViewModel)
+                                .onAppear {
+
+                                    if cat.wrappedValue == viewModel.cats.last {
+                                        self.viewModel.fetchMoreCats()
+                                    }
+                                }
                             }
                         }
                     }
                     .searchable(text: self.$viewModel.breedSearch)
+
+                    if self.$viewModel.state.wrappedValue == .loadingMore {
+                        HStack {
+                            
+                            Spacer()
+                            ProgressView {
+                                Text("Fetching more cats...")
+                            }
+                            Spacer()
+                        }
+                    }
                 }
             }
         }

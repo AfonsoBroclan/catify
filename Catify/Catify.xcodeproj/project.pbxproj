@@ -13,6 +13,7 @@
 		2080B0BA2C0F9FF9002CCEF9 /* BreedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */; };
 		2080B0C22C1114A2002CCEF9 /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */; };
 		2080B0C42C111AB3002CCEF9 /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C32C111AB3002CCEF9 /* CoreDataManagerTests.swift */; };
+		2080B0C62C11243A002CCEF9 /* Cat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080B0C52C11243A002CCEF9 /* Cat+Extensions.swift */; };
 		20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E1647A2C0B780B001C54EC /* CatifyApp.swift */; };
 		20E1647F2C0B780C001C54EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E1647E2C0B780C001C54EC /* Assets.xcassets */; };
 		20E164822C0B780C001C54EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20E164812C0B780C001C54EC /* Preview Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		2080B0B92C0F9FF9002CCEF9 /* BreedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedEntity.swift; sourceTree = "<group>"; };
 		2080B0C12C1114A2002CCEF9 /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		2080B0C32C111AB3002CCEF9 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		2080B0C52C11243A002CCEF9 /* Cat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cat+Extensions.swift"; sourceTree = "<group>"; };
 		20E164772C0B780B001C54EC /* Catify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E1647A2C0B780B001C54EC /* CatifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatifyApp.swift; sourceTree = "<group>"; };
 		20E1647E2C0B780C001C54EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				20E164CA2C0CC171001C54EC /* Breed+Extensions.swift */,
+				2080B0C52C11243A002CCEF9 /* Cat+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				20E1647B2C0B780B001C54EC /* CatifyApp.swift in Sources */,
 				2080B0B82C0F9FDB002CCEF9 /* CatEntity.swift in Sources */,
 				20E164B02C0B7D69001C54EC /* CatModel.swift in Sources */,
+				2080B0C62C11243A002CCEF9 /* Cat+Extensions.swift in Sources */,
 				20E164D82C0D1C30001C54EC /* FavouriteProtocol.swift in Sources */,
 				20E164BA2C0B8049001C54EC /* CatListViewModel.swift in Sources */,
 				20E164C52C0B948B001C54EC /* Cat.swift in Sources */,

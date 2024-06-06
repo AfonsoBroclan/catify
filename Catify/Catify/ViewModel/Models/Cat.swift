@@ -21,11 +21,16 @@ struct Cat {
 }
 
 // MARK: Protocol conformances
-extension Cat: Equatable {
+extension Cat: Equatable, Hashable {
 
     static func == (lhs: Cat, rhs: Cat) -> Bool {
 
         return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+
+        hasher.combine(self.id)
     }
 }
 

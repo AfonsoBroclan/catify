@@ -43,6 +43,11 @@ class CatListViewModel: ObservableObject {
         self.state = appViewModel.state
     }
 
+    func fetchMoreCats() {
+
+        self.appViewModel.fetchMoreCats()
+    }
+
     func toggleFavourite(for cat: Cat) {
 
         self.appViewModel.toggleFavourite(for: cat)

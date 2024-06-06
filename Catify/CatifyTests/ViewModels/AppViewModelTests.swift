@@ -27,7 +27,7 @@ final class AppViewModelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
 
-        XCTAssertEqual(appViewModel.cats.count, 3)
+        XCTAssertEqual(appViewModel.cats.count, 2)
         XCTAssertEqual(appViewModel.favouriteCats.count, 0)
     }
 
@@ -48,17 +48,17 @@ final class AppViewModelTests: XCTestCase {
         }
         wait(for: [fetchExpectation], timeout: 1)
 
-        XCTAssertEqual(appViewModel.cats.count, 3)
+        XCTAssertEqual(appViewModel.cats.count, 2)
         XCTAssertEqual(appViewModel.favouriteCats.count, 0)
 
         appViewModel.toggleFavourite(for: appViewModel.cats[0])
 
-        XCTAssertEqual(appViewModel.cats.count, 3)
+        XCTAssertEqual(appViewModel.cats.count, 2)
         XCTAssertEqual(appViewModel.favouriteCats.count, 1)
 
         appViewModel.toggleFavourite(for: appViewModel.cats[0])
 
-        XCTAssertEqual(appViewModel.cats.count, 3)
+        XCTAssertEqual(appViewModel.cats.count, 2)
         XCTAssertEqual(appViewModel.favouriteCats.count, 0)
     }
 }

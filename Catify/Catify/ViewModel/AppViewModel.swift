@@ -11,9 +11,10 @@ import SwiftUI
 
 enum AppState {
 
-    case loading
-    case loaded
     case error
+    case loaded
+    case loading
+    case loadingMore
 }
 
 @Observable final class AppViewModel {
@@ -31,7 +32,7 @@ enum AppState {
         }
     }
     var favouriteCats = [Cat]()
-    var state: AppState  = .loading
+    var state: AppState = .loading
 
     init(api: CatAPI = CatServices(), coreDataManager: CoreDataManager? = nil) {
         self.api = api
@@ -41,6 +42,11 @@ enum AppState {
     func viewDidLoad() {
 
         self.fetchCats()
+    }
+
+    func fetchMoreCats() {
+
+        self.fetchCats(shouldFetchMore: true)
     }
 
     func retry() {
@@ -79,22 +85,25 @@ extension AppViewModel: FavouriteProtocol {
 // MARK: Fetch
 private extension AppViewModel {
 
-    func fetchCats() {
+    func fetchCats(shouldFetchMore: Bool = false) {
 
         if self.canFetchMore == false {
 
             return
         }
 
-        self.state = .loading
+        self.state = shouldFetchMore ? .loadingMore : .loading
 
-        let savedCats = self.coreDataManager?.savedCats ?? []
+        if shouldFetchMore == false {
 
-        if savedCats.isEmpty == false {
+            let savedCats = self.coreDataManager?.savedCats ?? []
 
-            self.cats = savedCats
-            self.state = .loaded
-            return
+            if savedCats.isEmpty == false {
+
+                self.cats = savedCats
+                self.state = .loaded
+                return
+            }
         }
 
         Task { [weak self] in
@@ -110,13 +119,17 @@ private extension AppViewModel {
                     self.canFetchMore = false
                 }
 
-                let cats = catModels.map { Cat($0) }
+                let newCats = catModels.map { Cat($0) }
 
                 await MainActor.run {
 
-                    self.cats.append(contentsOf: cats)
+                    var currentCats = self.cats
 
-                    for cat in self.cats {
+                    currentCats.append(contentsOf: newCats)
+
+                    self.cats = currentCats.noDuplicates
+
+                    for cat in newCats {
 
                         self.coreDataManager?.saveCat(cat: cat)
                     }
