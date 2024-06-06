@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var viewModel = AppViewModel(coreDataManager: CoreDataManager())
+    @State var viewModel: AppViewModel
     @State private var selection: Tab = .list
 
     enum Tab {
@@ -37,5 +37,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: AppViewModel(coreDataManager: CoreDataManager()))
 }

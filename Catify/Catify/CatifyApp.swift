@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct CatifyApp: App {
+    @State var appViewModel = AppViewModel(coreDataManager: CoreDataManager())
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(viewModel: self.appViewModel)
         }
     }
 }

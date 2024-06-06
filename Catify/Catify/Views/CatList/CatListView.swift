@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatListView: View {
-    @ObservedObject var viewModel: CatListViewModel
+    @StateObject var viewModel: CatListViewModel
 
     var body: some View {
 
@@ -22,8 +22,7 @@ struct CatListView: View {
                 .loadingMore:
             if self.viewModel.cats.count == 0 && self.viewModel.breedSearch.isEmpty {
 
-                Text("Unfortunately there are no cats today! \nThey are currently getting a training in hell! 😈")
-                    .multilineTextAlignment(.center)
+                self.emptyView
 
             } else {
                 NavigationStack {
@@ -38,22 +37,19 @@ struct CatListView: View {
                             self.emptySearchView
 
                         } else {
-                            ForEach(self.$viewModel.cats) { cat in
+                            ForEach(self.$viewModel.cats) { $cat in
 
                                 NavigationLink {
-                                    CatDetailView(cat: cat,
+                                    CatDetailView(cat: $cat,
                                                   favouriteProtocol: self.viewModel.appViewModel)
                                 } label: {
-                                    CatListRow(cat: cat,
+                                    CatListRow(cat: $cat,
                                                favouriteProtocol: self.viewModel.appViewModel)
                                 }
                             }
 
-                            if self.viewModel.breedSearch.isEmpty {
-
-                                Section {
-                                    self.footerView
-                                }
+                            Section {
+                                self.footerView
                             }
                         }
                     }
@@ -70,7 +66,14 @@ extension CatListView {
     @ViewBuilder var emptyView: some View {
         switch self.viewModel.type {
         case .all:
-            ProgressView()
+            if self.viewModel.state == .loading {
+
+                ProgressView()
+            } else {
+                
+                Text("Unfortunately there are no cats today! \nThey are currently getting a training in hell! 😈")
+                    .multilineTextAlignment(.center)
+            }
         case .favourite:
             Text("Go add some favourite cats!")
         }
@@ -119,21 +122,27 @@ extension CatListView {
 
     @ViewBuilder var footerView: some View {
 
-        HStack {
+        if self.viewModel.breedSearch.isEmpty && self.viewModel.type == .all {
 
-            Spacer()
-            ZStack {
-                Button("Fetch more!") {
-                    self.viewModel.fetchMoreCats()
+            HStack {
+
+                Spacer()
+                ZStack {
+                    Button("Fetch more!") {
+                        self.viewModel.fetchMoreCats()
+                    }
+                    .disabled(self.viewModel.state != .loaded)
+
+                    if self.viewModel.state == .loadingMore {
+
+                        ProgressView()
+                    }
                 }
-                .disabled(self.viewModel.state != .loaded)
-
-                if self.viewModel.state == .loadingMore {
-
-                    ProgressView()
-                }
+                Spacer()
             }
-            Spacer()
+        } else {
+
+            EmptyView()
         }
     }
 }

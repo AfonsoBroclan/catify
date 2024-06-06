@@ -35,6 +35,8 @@ class CatListViewModel: ObservableObject {
         self.type = type
         self.cats = type == .all ? appViewModel.cats : appViewModel.favouriteCats
         self.state = appViewModel.state
+
+        self.sync()
     }
 
     func fetchMoreCats() {
@@ -71,6 +73,34 @@ private extension CatListViewModel {
                     breed.name.lowercased().contains(self.breedSearch.lowercased())
                 }
             }
+        }
+    }
+
+    func sync() {
+        
+        Task {
+
+            let appViewModelDidChange = AsyncStream {
+
+                await withCheckedContinuation { [weak self] continuation in
+
+                    let _ = withObservationTracking {
+                        _ = self?.appViewModel.cats
+                        _ = self?.appViewModel.state
+                    } onChange: {
+                        continuation.resume()
+                    }
+                }
+            }
+
+            var iterator = appViewModelDidChange.makeAsyncIterator()
+            repeat {
+                await MainActor.run {
+
+                    self.cats = type == .all ? self.appViewModel.cats : self.appViewModel.favouriteCats
+                    self.state = self.appViewModel.state
+                }
+            } while await iterator.next() != nil
         }
     }
 }
