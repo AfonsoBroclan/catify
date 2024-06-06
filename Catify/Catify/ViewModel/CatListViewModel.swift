@@ -24,14 +24,8 @@ class CatListViewModel: ObservableObject {
     @Published var breedSearch = "" {
 
         didSet {
-            if self.breedSearch.isEmpty {
 
-                self.cats = self.appViewModel.cats
-
-            } else {
-
-                self.cats = self.cats.filter { $0.breedName.lowercased().contains(self.breedSearch.lowercased()) }
-            }
+            self.filterCats()
         }
     }
     @Published var state: AppState
@@ -56,6 +50,27 @@ class CatListViewModel: ObservableObject {
     func retry() {
 
         self.appViewModel.retry()
+    }
+}
+
+private extension CatListViewModel {
+
+    func filterCats() {
+
+        if self.breedSearch.isEmpty {
+
+            self.cats = self.appViewModel.cats
+
+        } else {
+
+            self.cats = self.appViewModel.cats.filter { cat in
+
+                cat.breeds.contains { breed in
+
+                    breed.name.lowercased().contains(self.breedSearch.lowercased())
+                }
+            }
+        }
     }
 }
 

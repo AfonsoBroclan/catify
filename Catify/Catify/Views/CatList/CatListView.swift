@@ -39,27 +39,32 @@ struct CatListView: View {
                             } label: {
                                 CatListRow(cat: cat,
                                            favouriteProtocol: self.viewModel.appViewModel)
-                                .onAppear {
+                            }
+                        }
 
-                                    if cat.wrappedValue == viewModel.cats.last {
-                                        self.viewModel.fetchMoreCats()
+                        if self.viewModel.breedSearch.isEmpty {
+
+                            Section {
+                                HStack {
+
+                                    Spacer()
+                                    ZStack {
+                                        Button("Fetch more!") {
+                                            self.viewModel.fetchMoreCats()
+                                        }
+                                        .disabled(self.viewModel.state != .loaded)
+
+                                        if self.viewModel.state == .loadingMore {
+
+                                            ProgressView()
+                                        }
                                     }
+                                    Spacer()
                                 }
                             }
                         }
                     }
                     .searchable(text: self.$viewModel.breedSearch)
-
-                    if self.$viewModel.state.wrappedValue == .loadingMore {
-                        HStack {
-                            
-                            Spacer()
-                            ProgressView {
-                                Text("Fetching more cats...")
-                            }
-                            Spacer()
-                        }
-                    }
                 }
             }
         }
